@@ -1,36 +1,28 @@
 ---
 slug: '/'
-sidebar_label: 'Product Name'
+sidebar_label: 'Jaspersoft Connector'
+hide_title: 'true'
 ---
 
-# Tutorial Intro
+## Jaspersoft Connector
 
-Let's discover **Docusaurus in less than 5 minutes**.
+### SMARunJasperReportJobIII
 
-## Getting Started
+Version 21.00.00
 
-Get started by **creating a new site**.
+These applications enable JasperServer report jobs to be executed from the command line (thus from OpCon).  
 
-Or **try Docusaurus immediately** with **[new.docusaurus.io](https://new.docusaurus.io)**.
+In order to set up a Jasper report in OpCon, some research on the report must be done (from the Jasper Web application).  There are several items that must be supplied to run the report:
 
-## Generate a new site
+* Path to report file
+* The Resource ID (similar to the report name, but not the same)
+* Information on the parameters
+    * Resource ID (similar to the report name, but not the same)
 
-Generate a new Docusaurus site using the **classic template**:
+“Appendix C – Sample Job Set-up” walks the user through a complete set-up of a Jasper report from beginning to end.
 
-```shell
-npx @docusaurus/init@latest init my-website classic
-```
+:::info Note
 
-## Start your site
+This application uses the REST Version 2 interface to the JasperServer web services.  This means that only versions of JasperServer 5.6 and higher are supported.
 
-Run the development server:
-
-```shell
-cd my-website
-
-npx docusaurus start
-```
-
-Your site starts at `http://localhost:3000`.
-
-Open `docs/intro.md` and edit some lines: the site **reloads automatically** and display your changes.
+:::
