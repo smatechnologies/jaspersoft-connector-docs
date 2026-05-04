@@ -1,28 +1,65 @@
 ---
 slug: '/'
 sidebar_label: 'Jaspersoft Connector'
-hide_title: 'true'
+hide_table_of_contents: true
+displayed_sidebar: null
 ---
 
-## Jaspersoft Connector
+# Jaspersoft Connector
 
-### SMARunJasperReportJobIII
+The Jaspersoft Connector enables JasperServer report jobs to run from the command line and from OpCon.
 
-Version 21.00.00
+<div style={{display: 'flex', gap: '0.75rem', alignItems: 'flex-start', flexWrap: 'wrap', marginTop: '1rem'}}>
 
-These applications enable JasperServer report jobs to be executed from the command line (thus from OpCon).  
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
 
-In order to set up a Jasper report in OpCon, some research on the report must be done (from the Jasper Web application).  There are several items that must be supplied to run the report:
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
 
-* Path to report file
-* The Resource ID (similar to the report name, but not the same)
-* Information on the parameters
-    * Resource ID (similar to the report name, but not the same)
+### Overview
 
-“Appendix C – Sample Job Set-up” walks the user through a complete set-up of a Jasper report from beginning to end.
+- [Overview](./overview.md)
+- [Release notes](./release-notes.md)
 
-:::info Note
+</div>
 
-This application uses the REST Version 2 interface to the JasperServer web services.  This means that only versions of JasperServer 5.6 and higher are supported.
+</div>
 
-:::
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Configuration
+
+- [Configuration settings](./appendix-a.md)
+- [Password file](./password-file-options.md)
+
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Command line
+
+- [Command line options](./command-line-options.md)
+
+</div>
+
+</div>
+
+<div style={{flex: '1', minWidth: '160px', display: 'flex', flexDirection: 'column', gap: '0.6rem'}}>
+
+<div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
+
+### Appendices
+
+- [Sample execution](./appendix-b.md)
+- [Sample job setup](./appendix-c.md)
+
+</div>
+
+</div>
+
+</div>

@@ -1,108 +1,93 @@
 ---
-sidebar_label: 'Command Line Options'
-hide_title: 'true'
+sidebar_label: 'Command line options'
+title: Command line options
+description: "Reference for all command line options accepted by SMARunJasperReportJobIII, including required and optional parameters for running JasperServer report jobs."
+tags:
+  - Reference
+  - Automation Engineer
+  - System Administrator
 ---
 
-## Command Line Options
+# Command line options
 
-## SMARunJasperReportJobIII
+## What is it?
 
-This application starts and monitors a report job that has been defined in the JasperServer database.  If the job is initiated and finishes with no exceptions, this application exits with a value of 0.  If there are any errors, this applications exits with a value of 1.
+SMARunJasperReportJobIII is the command line application that starts and monitors a JasperServer report job. When the job completes without exceptions, the application exits with a value of `0`. When errors occur, the application exits with a value of `1`.
 
-A sample execution is shown in “Appendix B – SMARunJasperReportJobIII Sample Execution”. 
+Use this reference when configuring a Windows job in OpCon to run a JasperServer report. Each option corresponds to a setting you supply on the job's command line.
 
-## SMARunJasperReportJobIII Command Line Options 
+A sample execution is shown in [Sample execution](./appendix-b.md).
 
-#### Options and Descriptions
+## SMARunJasperReportJobIII command line options
 
-### `-configuration`
+| Option | Required | Description |
+| ------ | -------- | ----------- |
+| `-configuration` | No | The name of the configuration file to use. If not specified, `SMARunJasperReportJob.ini` (in the same directory as `SMARunJasperReportJob.exe`) is used. |
+| `-IgnorePagination` | No | Controls whether the JasperReport is paginated or delivered in one continuous data grouping. Enter `true` or `false`. |
+| `-JasperServerTimeout` | No | The maximum number of milliseconds to wait for the report to be generated and for the file to be downloaded. |
+| `-ReportDirectory` | No | The path in the Jasper repository of the report to run. |
+| `-ReportName` | **Yes** | The name of the JasperReport to generate. |
+| `-OutputFileFormat` | No | The desired report output format. Valid values: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`. |
+| `-OutputFileName` | **Yes** | The full path and filename of the report file to create. |
+| `-Param1`…`-Param99` | No | User-supplied report parameters. Each parameter is two fields separated by a vertical pipe (`\|`): the parameter name and the desired value. See note below. |
+| `-RawInput` | No | Bypasses character translation for all `-Param` values. See note below. |
 
-*(optional)* 
+### `-Param` note
 
-This is the name of the configuration file to use.  It is an optional parameter.  If no configuration file is specified, SMARunJasperReportJob.ini (in the same directory as SMARunJasperReportJob.exe) is assumed.
-
-### `-IgnorePagination` 
-
-*(optional)* 
-
-This must be either true or false.  If it is specified, it will control whether the JasperReport is paginated or delivered in one continuous data grouping.
-
-### `-JasperServerTimeout` 
-
-*(optional)* 
-
-This is the maximum number of milliseconds to wait for the report to be generated and to wait for the file to be downloaded.
-
-### `-ReportDirectory` 
-
-*(optional)* 
-
-This is the path in the Jasper repository of the report to execute. 
-
-### `-ReportName` 
-
-*(required)* 
-
-This is the name of the JasperReport to generate. 
-
-### `-OutputFileFormat`
-
-*(optional)* 
-
-This option specifies the desired report formats.  The valid choices are `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, and `ods`. 
-
-### `-OutputFileName`
-
-*(required)* 
-
-This is the full path and filename of the report file to create. 
-
-### `-Param1…-Param99` 
-
-*(optional)* 
-
-These are user supplied report parameters.  Each parameter consists of two fields separated by a vertical pipe symbol (`|`).  
-
-1 - The first field is the name of the parameter as shown in the Jasper report.  *(See “Appendix C – Jasper Screen Shots” to see how to determine the report parameter name.)*  
-
-2 - The second field is the desired value. 
-
-### `-RawInput`
-
-*(optional)* 
-
-By default, the ‘value’ part of `-Param` arguments have a translation done.  This looks like:
-
-`<` to `&lt;`
-
-`>` to `&gt;`
-
-` to `&apos;`
-
-` to `&quot;`
-
-`\r\n` to `empty string`
-
-`\n` to `empty string`
-
-In some instances, no translation is desired.  The `-RawInput` command line parameter specifies that the translation is to be bypassed for all `-Param` values. |
-
-If the desired value contains one of the reserved HTML characters, you must use the Entity Name for it.
-
-| Character | Entity Name | Description |
-| --------- | ----------- | ----------- |
-| `“`	| `&quot;` | Quotation mark | 
-| `‘`	| `&apos;` | Apostrophe | 
-| `<`	| `&lt;` | Less than symbol | 
-| `>`	| `&gt;` | Greater than symbol | 
-
-If the parameter is a multiple selection parameter, simply supply a `–Param` setting for each desired selection (with the same parameter name) or supply a single `-Param` setting and separate the desired choices by a vertical pipe (`|`) after the parameter name
+Each `-Param` value consists of the parameter name (as shown in the Jasper report — see [Sample job setup](./appendix-c.md)) and the desired value, separated by `|`. To pass multiple values for a multi-select parameter, either supply a separate `-Param` for each value using the same parameter name, or separate the values with `|` after the parameter name.
 
 :::tip Example
 
-`-Param=”Country_multi_select|US|Mexico”`
+`-Param="Country_multi_select|US|Mexico"`
 
-This would set a multi-select parameter called “Country_multi_select” to two choices (“US” and “Mexico”). 
+This sets a multi-select parameter called `Country_multi_select` to two values: `US` and `Mexico`.
 
 :::
 
+### `-RawInput` note
+
+By default, the value portion of `-Param` arguments undergoes the following character translations:
+
+| Character | Translated to |
+| --------- | ------------- |
+| `<` | `&lt;` |
+| `>` | `&gt;` |
+| `'` | `&apos;` |
+| `"` | `&quot;` |
+| `\r\n` | *(empty string)* |
+| `\n` | *(empty string)* |
+
+Specify `-RawInput` to bypass all translations for every `-Param` value. When `-RawInput` is not used and a parameter value contains a reserved HTML character, use the corresponding entity name:
+
+| Character | Entity name | Description |
+| --------- | ----------- | ----------- |
+| `"` | `&quot;` | Quotation mark |
+| `'` | `&apos;` | Apostrophe |
+| `<` | `&lt;` | Less than symbol |
+| `>` | `&gt;` | Greater than symbol |
+
+## FAQs
+
+**What is the difference between `-ReportDirectory` and `-ReportName`?**
+
+`-ReportDirectory` is the path in the JasperServer repository where the report is stored (for example, `/Reports/Samples/`). `-ReportName` is the Resource ID of the specific report to generate (for example, `EmployeeAccounts`). Both values are found by navigating the JasperServer repository. See [Sample job setup](./appendix-c.md) for instructions.
+
+**What output formats does the connector support?**
+
+The supported output formats are: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, and `ods`.
+
+**How do I pass multiple values for a multi-select parameter?**
+
+Use a single `-Param` setting with values separated by a vertical pipe (`|`) after the parameter name — for example, `-Param="Country_multi_select|US|Mexico"` — or supply a separate `-Param` for each value using the same parameter name.
+
+**When should I use `-RawInput`?**
+
+Use `-RawInput` when your parameter values contain special characters that must not be translated to HTML entity names. Without `-RawInput`, the connector automatically translates `<`, `>`, `'`, `"`, and newline characters in parameter values.
+
+## Glossary
+
+**Resource ID** — The unique identifier for a report or folder in the JasperServer repository. Similar to a display name but not identical. Use the Resource ID (not the display name) in the `-ReportName` and `-ReportDirectory` options.
+
+**Input control** — A parameter defined in a JasperServer report that accepts user-supplied values at run time. Input controls are identified by name in the JasperServer report editor and referenced using `-Param` options on the command line.
+
+**Exit code** — The numeric value returned by SMARunJasperReportJobIII when it finishes. A value of `0` indicates success. A value of `1` indicates an error occurred.

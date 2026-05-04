@@ -1,80 +1,96 @@
 ---
-sidebar_label: 'Appendix C - Sample Job Setup'
-hide_title: 'true'
+sidebar_label: 'Sample job setup'
+title: Sample job setup
+description: "A step-by-step walkthrough for gathering the information needed to configure a JasperServer report job in OpCon, including the report path, Resource ID, and parameter names."
+tags:
+  - Procedural
+  - Automation Engineer
 ---
 
-## Appendix C - Sample Job Setup
+# Sample job setup
 
-First, there is some information that must be collected in order to know what to put on the command line for OpCon.
+## What is it?
 
-1.	Log into the Jasper application as superuser.  The URL should be:
-[`http://<I.P.>:8080/jasperserver-pro/login.html`](http://<I.P.>:8080/jasperserver-pro/login.html)
+Before you can run a JasperServer report from OpCon, you must gather information about the report from the Jasper web application. This walkthrough shows how to collect the report path, Resource ID, and parameter names needed to build the OpCon command line.
 
-This may be different at your site.  For this example, a login to the community version (JasperServer instead of JasperServer-Pro) will be shown.  
+## Gather report information from JasperServer
 
-![](../static/img/Picture1.png)
+To collect the information needed to configure an OpCon job for a JasperServer report, complete the following steps:
 
-The superuser for the communicty version is `jasperadmin`.
+1. Log into the Jasper application. The URL format is:
 
-![](../static/img/Picture2.png)
+   `http://<IP address>:8080/jasperserver-pro/login.html`
 
-2.	Right-click on “View” and a drop-down menu will appear.  Click on **Repository**.
+   This may be different at your site. The example in this walkthrough uses the community version (JasperServer instead of JasperServer-Pro).
 
-![](../static/img/Picture3.png)
+   ![JasperServer login screen](../static/img/Picture1.png)
 
-3.	Open the items on the navigation menu on the left until you see the report that you wish to run.
+   The superuser account for the community version is `jasperadmin`.
 
-![](../static/img/Picture4.png)
+   ![JasperServer dashboard after login](../static/img/Picture2.png)
 
-Right-click on each level in the navigation menu (on the left) and select **Properties**.  For example, if you right-click on **Reports** and select **Properties**, you see:
+2. Right-click **View** and select **Repository** from the menu.
 
-![](../static/img/Picture5.png)
+   ![Repository menu option](../static/img/Picture3.png)
 
-Note the **Resource ID**.  Click on **Cancel** to close the dialog.
+3. Open the items in the menu on the left until you see the report you want to run.
 
-If you right-click on Samples and select **Properties**, you will see:
+   ![Repository navigation showing report folders](../static/img/Picture4.png)
 
-![](../static/img/Picture6.png)
+   Right-click each level in the menu on the left and select **Properties** to find the Resource ID for each level. For example, right-clicking **Reports** and selecting **Properties** shows:
 
-Note the **Resource ID**.  Click on **Cancel** to close the dialog.
+   ![Properties dialog showing Resource ID for Reports folder](../static/img/Picture5.png)
 
-Construct the path by appending these Resource IDs together.  This will be used with the `–ReportDirectory` command line option or in the configuration file.  In this case, the path is `/Reports/Samples/`.  
+   Note the **Resource ID**. Select **Cancel** to close the dialog.
 
-:::caution 
+   Right-clicking **Samples** and selecting **Properties** shows:
 
-The letter case is important!
+   ![Properties dialog showing Resource ID for Samples folder](../static/img/Picture6.png)
 
-:::
+   Note the **Resource ID**. Select **Cancel** to close the dialog.
 
-4.	Click on the line in front of the report that you wish to run to high-light it.  Then click on the button titled **Edit**.
+   Construct the report path by appending these Resource IDs together. This value is used with the `-ReportDirectory` command line option or in the configuration file. In this example, the path is `/Reports/Samples/`.
 
-![](../static/img/Picture7.png)
+   :::caution
 
-5.	This will display the details for the report:
+   The letter case in the report path is important. Use the exact capitalization shown in the Resource ID.
 
-![](../static/img/Picture8.png)
+   :::
 
-Write down the Resource ID for this report.  This will be used with the                 `–ReportName` command line option.
+4. Select the report you want to run to highlight it, then select the **Edit** button.
 
-6.	Click on **Controls & Resources**
+   ![Repository list with a report selected and the Edit button highlighted](../static/img/Picture7.png)
 
-![](../static/img/Picture9.png)
+5. Review the report details.
 
-7.	Note the three Input Controls that are displayed.  Click on the first Input Control (**Country multi select**).
+   ![Report details page](../static/img/Picture8.png)
 
-![](../static/img/Picture10.png)
+   Note the **Resource ID** for this report. This value is used with the `-ReportName` command line option.
 
-8.	The following screen will be displayed.
+6. Select **Controls & Resources**.
 
-![](../static/img/Picture11.png)
+   ![Controls and Resources tab](../static/img/Picture9.png)
 
-Click on **Next**.
+7. Review the input controls listed. Select the first input control (**Country multi select**).
 
-9.	The display shown below will apear.  Note the **Parameter Name (read-only)** field.  The is the name to use in a `–Param` command line option.
+   ![Input controls list](../static/img/Picture10.png)
 
-![](../static/img/Picture12.png)
+8. The input control details are displayed.
 
-Select “Cancel” to return to the screen shown in step #7.  Repeat steps #8 and #9 for all of the Input Controls.
+   ![Input control details page](../static/img/Picture11.png)
 
-At this point, all information to build the command line has been collected.  The report name, report directory, and all of the parameter names are known.
+   Select **Next**.
 
+9. Note the **Parameter Name (read-only)** field. This is the name to use in a `-Param` command line option.
+
+   ![Parameter name field](../static/img/Picture12.png)
+
+   Select **Cancel** to return to the input controls list. Repeat steps 8 and 9 for each input control listed.
+
+At this point you have collected all the information needed to build the command line: the report name, the report directory, and all parameter names.
+
+**Related topics:**
+
+- [Command line options](./command-line-options.md)
+- [Configuration settings](./appendix-a.md)
+- [Sample execution](./appendix-b.md)

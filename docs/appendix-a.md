@@ -1,12 +1,26 @@
 ---
-sidebar_label: 'Appendix A - Configuration Settings'
-hide_title: 'true'
+sidebar_label: 'Configuration settings'
+title: Configuration settings
+description: "Reference for all configuration file settings used by SMARunJasperReportJobIII to connect to and interact with JasperServer."
+tags:
+  - Reference
+  - System Administrator
 ---
 
-## Appendix A - Configuration Settings
+# Configuration settings
 
-```
+## What is it?
 
+The configuration file contains the parameters that control how SMARunJasperReportJobIII connects to and interacts with JasperServer. Settings marked with *(see note)* in the table below can be overridden from the command line.
+
+The file is organized into two sections:
+
+- **`[ConnectionDetails]`** — connection and authentication settings for the JasperServer web service
+- **`[ReportDefaults]`** — default values for report path and output format
+
+## Sample configuration file
+
+```ini
 #-------------------------------------------------------------------------------------
 #	This file contains the configuration parameters to execute a JasperServer job.
 #-------------------------------------------------------------------------------------
@@ -27,29 +41,50 @@ UseResourceFormatForVersion7=true
 [ReportDefaults]
 ReportDirectory=/reports/samples/
 OutputFileFormat=pdf
-
 ```
 
-### Configuration Table
+## Configuration settings reference
 
 | Section | Name | Description |
 | ------- | ---- | ----------- |
-| ConnectionDetails	| JasperServerProtocol | This must be `http` or `https`. |
-| ConnectionDetails	| JasperServerIPAddress	| This is the I.P. address to connect to the Corelation server. |
-| ConnectionDetails	| JasperServerPort | This is the port (socket) on which  JasperServer is listening for connections. |
-| ConnectionDetails	| JasperServerDomain | This must be either `jasperserver` or `jasperserver-pro`. |
-| ConnectionDetails	| JasperServerUser | This is user credentials to use to log into the Jasper Report server.  `superuser` appears to be the only user that has sufficient privileges to connect to the web service. |
-| ConnectionDetails	| JasperServerPassword | This is the password of the Jasper User specified above.  Alternately, this can be the path and filename to an encrypted file (See SMACreateCorelationPassword) |
-| ConnectionDetails	| JasperServerTimeout *(see note)*| This is the maximum number of milliseconds to wait for the report creation and to wait for the download of the report file. | 
-| ConnectionDetails | JasperServerLogin	| This is a portion of the URI that will be constructed for the login request.  It should not be changed unless directed by SMA. |
-| ConnectionDetails	| JasperServerResources | This is a portion of the URI that will be constructed for the resources request.  It should not be changed unless directed by SMA. |
-| ConnectionDetails | JasperServerReports | This is a portion of the URI that will be constructed for the reports request.  It should not be changed unless directed by SMA. |
-| ConnectionDetails | UseResourceFormatForVersion7 | Versions of JasperServer prior to version 7 used a different format for resources (input controls). |
-| ReportDefaults | ReportDirectory *(see note)* | This is the path to the report (not including the name of the report.)  It must be terminated by a forward slash. *(See “**Appendix C** – Jasper Screen Shots” to see how to determine the report path.)* |
-| ReportDefaults | OutputFileFormat *(see note)* | This is the format used to create the output file.  The supported formats are pdf, csv, xls, jrprint, html, xlsx, rtf, xml, docx, odt, ods. |
+| ConnectionDetails | JasperServerProtocol | The protocol used to connect to JasperServer. Enter `http` or `https`. |
+| ConnectionDetails | JasperServerIPAddress | The IP address of the JasperServer host. |
+| ConnectionDetails | JasperServerPort | The port on which JasperServer is listening for connections. |
+| ConnectionDetails | JasperServerDomain | The JasperServer context name. Enter `jasperserver` or `jasperserver-pro`. |
+| ConnectionDetails | JasperServerUser | The user account used to log into JasperServer. `superuser` appears to be the only account with sufficient privileges to connect to the web service. |
+| ConnectionDetails | JasperServerPassword | The password for the JasperServer user. Alternatively, enter the path and filename of an encrypted password file. See [Password file](./password-file-options.md). |
+| ConnectionDetails | JasperServerTimeout *(see note)* | The maximum number of milliseconds to wait for the report to be created and for the report file to be downloaded. |
+| ConnectionDetails | JasperServerLogin | A portion of the URI constructed for the login request. Do not change this value unless directed by SMA Technologies. |
+| ConnectionDetails | JasperServerResources | A portion of the URI constructed for the resources request. Do not change this value unless directed by SMA Technologies. |
+| ConnectionDetails | JasperServerReports | A portion of the URI constructed for the reports request. Do not change this value unless directed by SMA Technologies. |
+| ConnectionDetails | UseResourceFormatForVersion7 | Controls the format used for resources (input controls). Set to `true` for JasperServer version 7 and higher. Set to `false` for versions prior to 7. |
+| ReportDefaults | ReportDirectory *(see note)* | The path to the report in the JasperServer repository, not including the report name. The path must end with a forward slash. See [Sample job setup](./appendix-c.md) for how to determine the report path. |
+| ReportDefaults | OutputFileFormat *(see note)* | The default output format for the report file. Supported formats: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`. |
 
 :::info Note
 
-This configuration file parameter can be overridden from the command line.
+Settings marked with *(see note)* can be overridden from the command line.
 
 :::
+
+## FAQs
+
+**Can I override configuration file settings from the command line?**
+
+Yes. The settings `JasperServerTimeout`, `ReportDirectory`, and `OutputFileFormat` can be overridden by specifying the corresponding command line options. See [Command line options](./command-line-options.md) for the full list of available options.
+
+**What should `UseResourceFormatForVersion7` be set to?**
+
+Set `UseResourceFormatForVersion7` to `true` for JasperServer version 7 and higher. For JasperServer versions prior to version 7, set it to `false`. This setting controls how input controls (report parameters) are retrieved from the JasperServer web service.
+
+**Can I use an encrypted password instead of a plain text password?**
+
+Yes. Instead of entering the plain text password in the `JasperServerPassword` field, enter the full path and filename of an encrypted password file created with SMACreateCorelationPasswordFile. See [Password file](./password-file-options.md) for instructions.
+
+## Glossary
+
+**Domain** — The JasperServer context path used in web service URIs, typically `jasperserver` (community edition) or `jasperserver-pro` (enterprise edition).
+
+**Input control** — A parameter defined in a JasperServer report. The `UseResourceFormatForVersion7` setting controls how the connector retrieves input control definitions from the JasperServer web service.
+
+**REST v2** — The second version of JasperServer's REST (Representational State Transfer) web service interface, used by SMARunJasperReportJobIII to communicate with JasperServer. Requires JasperServer 5.6 or higher.

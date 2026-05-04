@@ -1,22 +1,40 @@
 ---
-sidebar_label: 'Appendix B - Sample Execution'
-hide_title: 'true'
+sidebar_label: 'Sample execution'
+title: Sample execution
+description: "A sample command line execution of SMARunJasperReportJobIII and the corresponding log output, showing how the connector processes a JasperServer report job."
+tags:
+  - Reference
+  - Automation Engineer
+  - System Administrator
 ---
 
-## Appendix B - Sample Execution
+# Sample execution
 
-```
-SMARunJasperReportJobIII.exe  -ReportDirectory=/analysis/reports/    -ReportName=EmployeeAccounts    -OutputFileName=.\Reports\Employees.pdf        -OutputFileFormat=pdf
-```
+## What is it?
 
-:::info Note  
+This page shows a sample command line execution of SMARunJasperReportJobIII and the corresponding log output. Use it as a reference to understand how the connector processes a JasperServer report job and what a successful execution looks like.
 
-The command line shown above should be a continuous line with no breaks.  It is shown as multiple lines for readability.
+The log output shows the sequence of operations the connector performs: reading configuration, applying command line overrides, authenticating with JasperServer, retrieving report parameters, and generating the report file.
+
+:::info Note
+
+The command line shown in the example below should be a continuous line with no breaks. It is shown on multiple lines for readability.
 
 :::
 
+## Sample command
+
+```
+SMARunJasperReportJobIII.exe
+  -ReportDirectory=/analysis/reports/
+  -ReportName=EmployeeAccounts
+  -OutputFileName=.\Reports\Employees.pdf
+  -OutputFileFormat=pdf
 ```
 
+## Sample log output
+
+```
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -78,11 +96,15 @@ The command line shown above should be a continuous line with no breaks.  It is 
 2019-09-12 14:57:30 - 
 2019-09-12 14:57:30 - Exit value: 0
 2019-09-12 14:57:30 - 
+```
 
-```  
+:::info Note
 
-:::info Note  
-
-To help the user resolve parameter names, SMARunJasperReportJobIII displays the parameters for a report in the section headed by “Parameters defined in report” (see above).
+SMARunJasperReportJobIII displays the parameters defined in the report under the "Parameters defined in report" section of the log. You can use this output to identify the parameter names needed for `-Param` command line options.
 
 :::
+
+**Related topics:**
+
+- [Command line options](./command-line-options.md)
+- [Configuration settings](./appendix-a.md)
