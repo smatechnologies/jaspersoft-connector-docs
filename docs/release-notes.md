@@ -10,6 +10,18 @@ tags:
 
 # Jaspersoft Connector release notes
 
+## 26
+
+### 26.0.0
+
+*05/2026*
+
+This release updates the bundled Newtonsoft.Json library to address a high-severity denial-of-service vulnerability.
+
+#### Bug fixes
+
+**Updated the bundled Newtonsoft.Json library to version 13.0.3 to address [CVE-2024-21907](https://nvd.nist.gov/vuln/detail/CVE-2024-21907).** The previous version contained a high-severity denial-of-service vulnerability. This update brings the dependency to a patched release.
+
 ## 21
 
 ### 21.00.00
