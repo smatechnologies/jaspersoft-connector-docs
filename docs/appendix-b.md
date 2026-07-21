@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Sample execution'
-title: Sample execution
+sidebar_label: 'Sample Execution'
+title: Sample Execution
 description: "A sample command line execution of SMARunJasperReportJobIII and the corresponding log output, showing how the connector processes a JasperServer report job."
 tags:
   - Reference
@@ -8,7 +8,7 @@ tags:
   - System Administrator
 ---
 
-# Sample execution
+# Sample Execution
 
 ## What is it?
 

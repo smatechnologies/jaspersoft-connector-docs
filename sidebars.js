@@ -4,9 +4,9 @@ module.exports = {
     'overview',
     'release-notes',
     'password-file-options',
-    'command-line-options',
     'appendix-a',
-    'appendix-b',
+    'command-line-options',
     'appendix-c',
+    'appendix-b',
   ],
 };

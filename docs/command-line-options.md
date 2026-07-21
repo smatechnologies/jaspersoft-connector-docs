@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Command line options'
-title: Command line options
+sidebar_label: 'Command Line Options'
+title: Command Line Options
 description: "Reference for all command line options accepted by SMARunJasperReportJobIII, including required and optional parameters for running JasperServer report jobs."
 tags:
   - Reference
@@ -8,7 +8,7 @@ tags:
   - System Administrator
 ---
 
-# Command line options
+# Command Line Options
 
 ## What is it?
 

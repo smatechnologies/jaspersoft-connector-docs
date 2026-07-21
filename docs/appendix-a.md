@@ -1,17 +1,24 @@
 ---
-sidebar_label: 'Configuration settings'
-title: Configuration settings
-description: "Reference for all configuration file settings used by SMARunJasperReportJobIII to connect to and interact with JasperServer."
+sidebar_label: 'Installation And Configuration Settings'
+title: Installation And Configuration Settings
+description: "How to install the Jaspersoft Connector and a reference for all configuration file settings used by SMARunJasperReportJobIII to connect to and interact with JasperServer."
 tags:
   - Reference
   - System Administrator
+  - Installation
 ---
 
-# Configuration settings
+# Installation And Configuration Settings
 
-## What is it?
+## Installation
 
-The configuration file contains the parameters that control how SMARunJasperReportJobIII connects to and interacts with JasperServer. Settings marked with *(see note)* in the table below can be overridden from the command line.
+The Jaspersoft Connector does not include an installer. To install it, extract the downloaded package into a folder on the machine where the connector runs.
+
+Continuous recommends creating a `Jaspersoft` folder inside your existing OpCon folder and extracting the package there.
+
+## What is the Configuration File?
+
+The configuration file contains the parameters that control how SMARunJasperReportJobIII connects to and interacts with JasperServer. 
 
 The file is organized into two sections:
 
