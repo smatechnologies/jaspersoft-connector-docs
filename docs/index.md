@@ -18,7 +18,7 @@ The Jaspersoft Connector enables JasperServer report jobs to run from the comman
 ### Overview
 
 - [Overview](./overview.md)
-- [Release notes](./release-notes.md)
+- [Release Notes](./release-notes.md)
 
 </div>
 
@@ -30,8 +30,8 @@ The Jaspersoft Connector enables JasperServer report jobs to run from the comman
 
 ### Configuration
 
-- [Configuration settings](./appendix-a.md)
-- [Password file](./password-file-options.md)
+- [Installation And Configuration Settings](./appendix-a.md)
+- [Password File](./password-file-options.md)
 
 </div>
 
@@ -41,9 +41,9 @@ The Jaspersoft Connector enables JasperServer report jobs to run from the comman
 
 <div style={{background: 'var(--ifm-card-background-color)', border: '1px solid var(--ifm-color-emphasis-400)', borderRadius: '10px', padding: '0.75rem 1rem'}}>
 
-### Command line
+### Command Line
 
-- [Command line options](./command-line-options.md)
+- [Command Line Options](./command-line-options.md)
 
 </div>
 
@@ -55,8 +55,8 @@ The Jaspersoft Connector enables JasperServer report jobs to run from the comman
 
 ### Appendices
 
-- [Sample execution](./appendix-b.md)
-- [Sample job setup](./appendix-c.md)
+- [Sample Execution](./appendix-b.md)
+- [Sample Job Setup](./appendix-c.md)
 
 </div>
 

@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Sample job setup'
-title: Sample job setup
+sidebar_label: 'Sample Job Setup'
+title: Sample Job Setup
 description: "A step-by-step walkthrough for gathering the information needed to configure a JasperServer report job in OpCon, including the report path, Resource ID, and parameter names."
 tags:
   - Procedural
   - Automation Engineer
 ---
 
-# Sample job setup
+# Sample Job Setup
 
 ## What is it?
 

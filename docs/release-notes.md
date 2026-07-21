@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Release notes'
-title: Jaspersoft Connector release notes
+sidebar_label: 'Release Notes'
+title: Jaspersoft Connector Release Notes
 description: "Version history and change details for the Jaspersoft Connector (SMARunJasperReportJobIII), including new features, improvements, and bug fixes."
 tags:
   - Reference
@@ -8,7 +8,7 @@ tags:
   - Automation Engineer
 ---
 
-# Jaspersoft Connector release notes
+# Jaspersoft Connector Release Notes
 
 ## 26
 

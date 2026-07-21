@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Password file'
-title: Password file
+sidebar_label: 'Password File'
+title: Password File
 description: "How to use SMACreateCorelationPasswordFile to encrypt a JasperServer password and store it securely instead of storing it in plain text in the configuration file."
 tags:
   - Reference
   - System Administrator
 ---
 
-# Password file
+# Password File
 
 ## What is it?
 
