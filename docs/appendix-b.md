@@ -12,7 +12,9 @@ tags:
 
 ## What is it?
 
-This page shows a sample command line execution of SMARunJasperReportJobIII and the corresponding log output. Use it as a reference to understand how the connector processes a JasperServer report job and what a successful execution looks like.
+This page shows a sample command line run of SMARunJasperReportJobIII and the corresponding log output. Use it as a reference to understand how the connector processes a JasperServer report job and what a successful run looks like.
+
+The sample was produced by an earlier release (version 19.0.0.0). The current release also logs the `-RawInput` and `UseResourceFormatForVersion7` values.
 
 The log output shows the sequence of operations the connector performs: reading configuration, applying command line overrides, authenticating with JasperServer, retrieving report parameters, and generating the report file.
 
@@ -82,7 +84,7 @@ SMARunJasperReportJobIII.exe
 2019-09-12 14:57:26 - Fetching response from : http://192.168.0.111:8080/jasperserver/GetEncryptionKey
 2019-09-12 14:57:26 - resonse.StatusCode = OK
 2019-09-12 14:57:26 - Fetching Authentication token from http://192.168.0.111:8080/jasperserver/rest_v2/login
-2019-09-12 14:57:26 - Authentication token = [JSESSIONID=C4FED936C7AD0636D3CCDEA74BCC380C; Path=/jasperserver; HttpOnly,userLocale=en_US;Expires=Fri, 13-Sep-2019 19:57:27 GMT;Path=/jasperserver/;HttpOnly]
+2019-09-12 14:57:26 - Authentication token = [JSESSIONID=<session ID>; Path=/jasperserver; HttpOnly,userLocale=en_US;Expires=Fri, 13-Sep-2019 19:57:27 GMT;Path=/jasperserver/;HttpOnly]
 2019-09-12 14:57:26 - 
 2019-09-12 14:57:26 - ResourceUri = http://192.168.0.111:8080/jasperserver/rest_v2/resources/analysis/reports/EmployeeAccounts
 2019-09-12 14:57:26 - 

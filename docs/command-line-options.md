@@ -16,29 +16,34 @@ SMARunJasperReportJobIII is the command line application that starts and monitor
 
 Use this reference when configuring a Windows job in OpCon to run a JasperServer report. Each option corresponds to a setting you supply on the job's command line.
 
-A sample execution is shown in [Sample execution](./appendix-b.md).
+A sample run is shown in [Sample execution](./appendix-b.md).
 
 ## SMARunJasperReportJobIII command line options
 
 | Option | Required | Description |
 | ------ | -------- | ----------- |
 | `-configuration` | No | The name of the configuration file to use. If not specified, `SMARunJasperReportJob.ini` (in the same directory as `SMARunJasperReportJob.exe`) is used. |
+| `-Debug` | No | Adds debug detail to the log. Use it when troubleshooting a job. |
 | `-IgnorePagination` | No | Controls whether the JasperReport is paginated or delivered in one continuous data grouping. Enter `true` or `false`. |
 | `-JasperServerTimeout` | No | The maximum number of milliseconds to wait for the report to be generated and for the file to be downloaded. |
 | `-ReportDirectory` | No | The path in the Jasper repository of the report to run. |
 | `-ReportName` | **Yes** | The name of the JasperReport to generate. |
-| `-OutputFileFormat` | No | The desired report output format. Valid values: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`. |
+| `-OutputFileFormat` | No | The desired report output format. Valid values: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`. Enter the value in lowercase. |
 | `-OutputFileName` | **Yes** | The full path and filename of the report file to create. |
-| `-Param1`…`-Param99` | No | User-supplied report parameters. Each parameter is two fields separated by a vertical pipe (`\|`): the parameter name and the desired value. See note below. |
+| `-Param0`…`-Param499` | No | User-supplied report parameters, numbered from 0 to 499 (for example, `-Param1`). Each parameter is two fields separated by a vertical pipe (`\|`): the parameter name and the desired value. An unnumbered `-Param` is not read. See note below. |
 | `-RawInput` | No | Bypasses character translation for all `-Param` values. See note below. |
 
 ### `-Param` note
 
-Each `-Param` value consists of the parameter name (as shown in the Jasper report — see [Sample job setup](./appendix-c.md)) and the desired value, separated by `|`. To pass multiple values for a multi-select parameter, either supply a separate `-Param` for each value using the same parameter name, or separate the values with `|` after the parameter name.
+Each `-Param` option carries a number from 0 to 499, such as `-Param1` or `-Param2`. An option written as `-Param` with no number is not read and raises no error, so the report runs without that parameter.
+
+Each `-Param` value consists of the parameter name (as shown in the Jasper report — see [Sample job setup](./appendix-c.md)) and the desired value, separated by `|`. To pass multiple values for a multi-select parameter, either supply a separately numbered `-Param` for each value using the same parameter name (for example, `-Param1` and `-Param2`), or separate the values with `|` after the parameter name.
+
+The parameter name must match a report parameter exactly. If it does not, the job stops with the message `Parameter on command line [name] does not match any of the report parameters`. A `-Param` value with no `|` separator, or with an empty parameter name, also stops the job.
 
 :::tip Example
 
-`-Param="Country_multi_select|US|Mexico"`
+`-Param1="Country_multi_select|US|Mexico"`
 
 This sets a multi-select parameter called `Country_multi_select` to two values: `US` and `Mexico`.
 
@@ -46,7 +51,7 @@ This sets a multi-select parameter called `Country_multi_select` to two values: 
 
 ### `-RawInput` note
 
-By default, the value portion of `-Param` arguments undergoes the following character translations:
+Parameter values are sent to JasperServer in the report request URL. By default, before a value is sent, the following characters are replaced:
 
 | Character | Translated to |
 | --------- | ------------- |
@@ -57,14 +62,9 @@ By default, the value portion of `-Param` arguments undergoes the following char
 | `\r\n` | *(empty string)* |
 | `\n` | *(empty string)* |
 
-Specify `-RawInput` to bypass all translations for every `-Param` value. When `-RawInput` is not used and a parameter value contains a reserved HTML character, use the corresponding entity name:
+The report receives the replaced text. For example, without `-RawInput` the value `O'Brien` arrives as `O&apos;Brien`. A value that already contains one of the entity names (`&amp;`, `&lt;`, `&gt;`, `&apos;`, or `&quot;`) is sent unchanged.
 
-| Character | Entity name | Description |
-| --------- | ----------- | ----------- |
-| `"` | `&quot;` | Quotation mark |
-| `'` | `&apos;` | Apostrophe |
-| `<` | `&lt;` | Less than symbol |
-| `>` | `&gt;` | Greater than symbol |
+Specify `-RawInput` to send every `-Param` value exactly as entered. Use it when a parameter value contains any of the characters in the table above.
 
 ## FAQs
 
@@ -78,11 +78,11 @@ The supported output formats are: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`
 
 **How do I pass multiple values for a multi-select parameter?**
 
-Use a single `-Param` setting with values separated by a vertical pipe (`|`) after the parameter name — for example, `-Param="Country_multi_select|US|Mexico"` — or supply a separate `-Param` for each value using the same parameter name.
+Use a single numbered `-Param` option with values separated by a vertical pipe (`|`) after the parameter name — for example, `-Param1="Country_multi_select|US|Mexico"` — or supply a separately numbered `-Param` for each value using the same parameter name.
 
 **When should I use `-RawInput`?**
 
-Use `-RawInput` when your parameter values contain special characters that must not be translated to HTML entity names. Without `-RawInput`, the connector automatically translates `<`, `>`, `'`, `"`, and newline characters in parameter values.
+Use `-RawInput` when your parameter values contain `<`, `>`, `'`, `"`, or line breaks that the report must receive as entered. Without `-RawInput`, the connector replaces those characters with entity names or removes the line breaks, and the report receives the replaced text.
 
 ## Glossary
 
