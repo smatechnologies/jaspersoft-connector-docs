@@ -17,7 +17,7 @@ Before you can run a JasperServer report from OpCon, you must gather information
 
 To collect the information needed to configure an OpCon job for a JasperServer report, complete the following steps:
 
-1. Log into the Jasper application. The URL format is:
+1. Log in to the Jasper application. The URL format is:
 
    `http://<IP address>:8080/jasperserver-pro/login.html`
 
@@ -29,7 +29,7 @@ To collect the information needed to configure an OpCon job for a JasperServer r
 
    ![JasperServer dashboard after login](../static/img/Picture2.png)
 
-2. Right-click **View** and select **Repository** from the menu.
+2. Select **View** > **Repository**.
 
    ![Repository menu option](../static/img/Picture3.png)
 
@@ -85,7 +85,7 @@ To collect the information needed to configure an OpCon job for a JasperServer r
 
    ![Parameter name field](../static/img/Picture12.png)
 
-   Select **Cancel** to return to the input controls list. Repeat steps 8 and 9 for each input control listed.
+   Select **Cancel** to return to the input controls list. Repeat steps 7 to 9 for each remaining input control.
 
 At this point you have collected all the information needed to build the command line: the report name, the report directory, and all parameter names.
 

@@ -1,4 +1,10 @@
 ---
+title: Jaspersoft Connector
+description: "Documentation for the Jaspersoft Connector, which runs JasperServer report jobs from the command line and from OpCon."
+tags:
+  - Overview
+  - Automation Engineer
+  - System Administrator
 slug: '/'
 sidebar_label: 'Jaspersoft Connector'
 hide_table_of_contents: true

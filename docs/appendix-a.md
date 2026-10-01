@@ -54,23 +54,25 @@ OutputFileFormat=pdf
 
 | Section | Name | Description |
 | ------- | ---- | ----------- |
-| ConnectionDetails | JasperServerProtocol | The protocol used to connect to JasperServer. Enter `http` or `https`. |
-| ConnectionDetails | JasperServerIPAddress | The IP address of the JasperServer host. |
-| ConnectionDetails | JasperServerPort | The port on which JasperServer is listening for connections. |
-| ConnectionDetails | JasperServerDomain | The JasperServer context name. Enter `jasperserver` or `jasperserver-pro`. |
-| ConnectionDetails | JasperServerUser | The user account used to log into JasperServer. `superuser` appears to be the only account with sufficient privileges to connect to the web service. |
-| ConnectionDetails | JasperServerPassword | The password for the JasperServer user. Alternatively, enter the path and filename of an encrypted password file. See [Password file](./password-file-options.md). |
-| ConnectionDetails | JasperServerTimeout *(see note)* | The maximum number of milliseconds to wait for the report to be created and for the report file to be downloaded. |
-| ConnectionDetails | JasperServerLogin | A portion of the URI constructed for the login request. Do not change this value unless directed by SMA Technologies. |
-| ConnectionDetails | JasperServerResources | A portion of the URI constructed for the resources request. Do not change this value unless directed by SMA Technologies. |
-| ConnectionDetails | JasperServerReports | A portion of the URI constructed for the reports request. Do not change this value unless directed by SMA Technologies. |
-| ConnectionDetails | UseResourceFormatForVersion7 | Controls the format used for resources (input controls). Set to `true` for JasperServer version 7 and higher. Set to `false` for versions prior to 7. |
-| ReportDefaults | ReportDirectory *(see note)* | The path to the report in the JasperServer repository, not including the report name. The path must end with a forward slash. See [Sample job setup](./appendix-c.md) for how to determine the report path. |
-| ReportDefaults | OutputFileFormat *(see note)* | The default output format for the report file. Supported formats: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`. |
+| ConnectionDetails | JasperServerProtocol | The protocol used to connect to JasperServer. Enter `http` or `https` in lowercase. Required. |
+| ConnectionDetails | JasperServerIPAddress | The IP address of the JasperServer host. A host name is not accepted. Required. |
+| ConnectionDetails | JasperServerPort | The port on which JasperServer is listening for connections. Required. |
+| ConnectionDetails | JasperServerDomain | The JasperServer context name. Enter `jasperserver` or `jasperserver-pro` in lowercase. Required. |
+| ConnectionDetails | JasperServerUser | Required. The user account used to log in to JasperServer. `superuser` appears to be the only account with sufficient privileges to connect to the web service. |
+| ConnectionDetails | JasperServerPassword | Required. The password for the JasperServer user. Alternatively, enter the path and filename of an encrypted password file. See [Password file](./password-file-options.md). |
+| ConnectionDetails | JasperServerTimeout *(see note)* | The maximum number of milliseconds to wait for the report to be created and for the report file to be downloaded. Required. |
+| ConnectionDetails | JasperServerLogin | A portion of the URI constructed for the login request. Keep the `/rest_v2/login` value shown in the sample; if the setting is omitted, the connector uses the REST v1 path `/rest/login`. Do not change this value unless directed by Continuous Support. |
+| ConnectionDetails | JasperServerResources | A portion of the URI constructed for the resources request. Keep the `/rest_v2/resources` value shown in the sample; if the setting is omitted, the connector uses the REST v1 path `/rest/resource`. Do not change this value unless directed by Continuous Support. |
+| ConnectionDetails | JasperServerReports | A portion of the URI constructed for the reports request. Keep the `/rest_v2/reports` value shown in the sample; if the setting is omitted, the connector uses the REST v1 path `/rest/reports`. Do not change this value unless directed by Continuous Support. |
+| ConnectionDetails | UseResourceFormatForVersion7 | Controls the format used for resources (input controls). Set to `true` for JasperServer version 7 and higher. Set to `false` for versions prior to 7. Defaults to `false` when omitted. |
+| ReportDefaults | ReportDirectory *(see note)* | The path to the report in the JasperServer repository, not including the report name. The path must end with a forward slash. See [Sample job setup](./appendix-c.md) for how to determine the report path. Required. |
+| ReportDefaults | OutputFileFormat *(see note)* | The default output format for the report file. Supported formats: `pdf`, `csv`, `xls`, `jrprint`, `html`, `xlsx`, `rtf`, `xml`, `docx`, `odt`, `ods`, in lowercase. Required. |
 
 :::info Note
 
 Settings marked with *(see note)* can be overridden from the command line.
+
+Settings marked **Required** must be present in the file even when you override them from the command line. If a required setting is missing or invalid, the job stops.
 
 :::
 

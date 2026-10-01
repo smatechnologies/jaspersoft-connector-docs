@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Password File'
 title: Password File
-description: "How to use SMACreateCorelationPasswordFile to encrypt a JasperServer password and store it securely instead of storing it in plain text in the configuration file."
+description: "How to use SMACreateCorelationPasswordFile to encrypt a JasperServer password into a file instead of storing it in plain text in the configuration file."
 tags:
   - Reference
   - System Administrator
@@ -19,18 +19,18 @@ Once you create the encrypted password file, enter the path and filename of that
 
 | Option | Description |
 | ------ | ----------- |
-| `-file` | The name of the file to create that will contain the encrypted password. |
+| `-file` | The name of the file to create to contain the encrypted password. |
 | `-password` | The JasperServer user password to encrypt. |
 
 ## FAQs
 
 **Why should I use an encrypted password file instead of storing the password in the configuration file?**
 
-Storing passwords in plain text in configuration files is a security risk, particularly in environments where configuration files may be accessed by multiple users or stored in source control. The encrypted password file protects your credentials by storing them in an encrypted format that the connector can read at run time.
+Storing passwords in plain text in configuration files is a security risk, particularly in environments where configuration files may be accessed by multiple users or stored in source control. The password file keeps the password out of plain text in the configuration file. The connector decrypts the file with a key built into the product, so restrict access to the file as you would to the configuration file.
 
 **How do I reference the encrypted password file in the configuration file?**
 
-In the `[ConnectionDetails]` section of the configuration file, set `JasperServerPassword` to the full path and filename of the encrypted file instead of the plain text password. The connector reads and decrypts the file automatically when it runs.
+In the `[ConnectionDetails]` section of the configuration file, set `JasperServerPassword` to the full path and filename of the encrypted file instead of the plain text password. When the value is the path of an existing file, the connector reads and decrypts the file when it runs. If the file cannot be read, the connector logs the error and continues with an empty password, so the JasperServer login fails.
 
 ## Glossary
 

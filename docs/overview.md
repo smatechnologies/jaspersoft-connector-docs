@@ -22,7 +22,7 @@ Use this connector when you need to:
 
 ## SMARunJasperReportJobIII
 
-Version 21.00.00
+Version 26.0.0
 
 To set up a Jasper report in OpCon, you must first gather information about the report from the Jasper web application. The following items are required to run a report:
 
